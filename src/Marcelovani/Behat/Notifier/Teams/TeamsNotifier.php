@@ -131,6 +131,10 @@ class TeamsNotifier
 
         // Send notification.
         switch ($details['eventId']) {
+            case 'onBeforeSuiteTested';
+                $message = $this->getSuiteStartMessage();
+                break;
+
             case 'onAfterSuiteTested';
                 $message = $this->getSuiteFinishedMessage($event);
                 break;
@@ -199,6 +203,12 @@ class TeamsNotifier
                     'value' => $item,
                 ];
             }
+        } else {
+            $message['themeColor'] = '#00ff00';
+            $message['sections'][0]['facts'][] = [
+                'name' => 'Outcome',
+                'value' => 'Passed',
+            ];
         }
 
         return $message;
