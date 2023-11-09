@@ -1,0 +1,8 @@
+default:
+  extensions:
+    Marcelovani\Behat\Notifier:
+      screenshotExtension: Bex\Behat\ScreenshotExtension
+      notifiers:
+        Marcelovani\Behat\Notifier\Teams\TeamsNotifier:
+          # The MS Teams webhook.
+          webhook: 'https://www.foo.bar'
