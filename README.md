@@ -41,3 +41,4 @@ Todo
 - Use Guzzle instead of php curl
 - Add example Features and Unit tests
 - Add Github actions
+- List package on https://packagist.org/

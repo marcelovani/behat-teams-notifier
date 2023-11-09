@@ -3,7 +3,16 @@
     "version": "1.0.0",
     "type": "library",
     "description": "Extension for behat to send MS Teams notifications",
-    "keywords": ["tdd","bdd","behat", "MS", "Microsoft", "Teams", "Notifications", "Messages"],
+    "keywords": [
+        "tdd",
+        "bdd",
+        "behat",
+        "MS",
+        "Microsoft",
+        "Teams",
+        "Notifications",
+        "Messages"
+    ],
     "homepage": "https://github.com/marcelovani/behat-teams-notifier",
     "license": "MIT",
     "authors": [
