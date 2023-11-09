@@ -82,5 +82,21 @@ class TeamsNotifier
 
 
 
+    /**
+     * Posts messsage to MS Teams.
+     *
+     * @param array $message
+     *   Array with message parameters.
+     */
+    private function postMessage(array $message)
+    {
+        $message = json_encode($message, JSON_PRETTY_PRINT);
+        var_dump($message);
+        $webhook = $this->getWebhook();
+        if (!empty($webhook) && $message) {
+            $this->doRequest($webhook, $message);
+        }
+    }
+
 
 }
