@@ -80,7 +80,28 @@ class TeamsNotifier
         }
     }
 
-
+    /**
+     * Helper to build the default message.
+     *
+     * @return array
+     *   Array with message.
+     */
+    public function getDefaultMessage()
+    {
+        return [
+            '@type' => 'MessageCard',
+            '@context' => 'http://schema.org/extensions',
+            'themeColor' => '',
+            'summary' => '',
+            'sections' => [
+                [
+                    'activityTitle' => '',
+                    'activitySubtitle' => '',
+                    'markdown' => true,
+                ]
+            ]
+        ];
+    }
 
     /**
      * Posts messsage to MS Teams.
