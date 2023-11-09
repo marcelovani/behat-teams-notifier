@@ -172,6 +172,39 @@ class TeamsNotifier
     }
 
     /**
+     * Send notification when suite finishes.
+     *
+     * @param TestworkEvent\SuiteTested $event
+     *   The suite event.
+     *
+     * @return array
+     *   The message array.
+     */
+    public function getSuiteFinishedMessage(TestworkEvent\SuiteTested $event)
+    {
+        $message = $this->getDefaultMessage($event);
+        $message['summary'] = "Automation job finished";
+        $message['sections'][0]['activityTitle'] = $message['summary'];
+
+        // Check for failed scenarios.
+        if (!empty($this->failedScenarios)) {
+            $message['themeColor'] = '#ff0000';
+            $message['sections'][0]['facts'][] = [
+                'name' => 'Outcome',
+                'value' => 'Failed',
+            ];
+            foreach ($this->failedScenarios as $item) {
+                $message['sections'][0]['facts'][] = [
+                    'name' => 'Feature',
+                    'value' => $item,
+                ];
+            }
+        }
+
+        return $message;
+    }
+
+    /**
      * Send notification when scenarios fail.
      *
      * @param $payload
