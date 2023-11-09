@@ -176,6 +176,22 @@ class TeamsNotifier
     }
 
     /**
+     * Send notification when suite starts.
+     *
+     * @return array
+     *   The message array.
+     */
+    public function getSuiteStartMessage()
+    {
+        $message = $this->getDefaultMessage();
+        $message['summary'] = "Automation job started";
+        $message['sections'][0]['activityTitle'] = $message['summary'];
+        $message['themeColor'] = '#ff9933';
+
+        return $message;
+    }
+
+    /**
      * Send notification when suite finishes.
      *
      * @param TestworkEvent\SuiteTested $event
