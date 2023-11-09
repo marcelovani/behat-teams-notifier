@@ -152,6 +152,16 @@ class TeamsNotifier
                         $payload['steps'][] = $step->getKeyword() . ' ' . $step->getText();
                     }
 
+                    // Attach screenshots.
+                    if (!empty($details['screenshotService'])) {
+                        $screenshotService = $details['screenshotService'];
+                        $files = $screenshotService->getImages();
+                        if (!empty($files)) {
+                            array_reverse($files);
+                        }
+                        $payload['screenshots'] = $files;
+                    }
+
                     $message = $this->getFailedScenarioMessage($payload);
                     $this->failedScenarios[] = $payload['feature'];
                 }
