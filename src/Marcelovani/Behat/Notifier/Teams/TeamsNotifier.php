@@ -138,7 +138,14 @@ class TeamsNotifier
             case 'onAfterScenarioTested';
                 if (!$event->getTestResult()->isPassed()) {
 
-
+                    // Prepare payload.
+                    $payload = [
+                        'feature_file' => $event->getFeature()->getFile(),
+                        'feature' => $event->getFeature()->getTitle(),
+                        'description' => $event->getFeature()->getDescription(),
+                        'scenario' => $event->getScenario()->getTitle(),
+                        'line' => $event->getScenario()->getLine(),
+                    ];
 
 
                     $message = $this->getFailedScenarioMessage($payload);
