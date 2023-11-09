@@ -1,6 +1,6 @@
 Behat Teams Notifier Extension
 =========================
-This Behat extension integrates with [https://github.com/marcelovani/behat-notifier](Behat Notifier)
+This Behat extension integrates with [Behat Notifier](https://github.com/marcelovani/behat-notifier)
 to allow sending MS Teams notifications to channels.
 
 Installation
