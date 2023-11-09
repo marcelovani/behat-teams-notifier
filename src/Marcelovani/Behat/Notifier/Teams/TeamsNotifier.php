@@ -147,6 +147,10 @@ class TeamsNotifier
                         'line' => $event->getScenario()->getLine(),
                     ];
 
+                    /** @var Behat\Gherkin\Node\StepNode $step */
+                    foreach ($event->getScenario()->getSteps() as $step) {
+                        $payload['steps'][] = $step->getKeyword() . ' ' . $step->getText();
+                    }
 
                     $message = $this->getFailedScenarioMessage($payload);
                     $this->failedScenarios[] = $payload['feature'];
