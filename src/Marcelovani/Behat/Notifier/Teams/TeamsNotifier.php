@@ -135,9 +135,42 @@ class TeamsNotifier
                 $message = $this->getSuiteFinishedMessage($event);
                 break;
 
+            case 'onAfterScenarioTested';
+                if (!$event->getTestResult()->isPassed()) {
+
+
+
+
+                    $message = $this->getFailedScenarioMessage($payload);
+                    $this->failedScenarios[] = $payload['feature'];
+                }
+                break;
         }
 
         $this->postMessage($message);
     }
 
+    /**
+     * Send notification when scenarios fail.
+     *
+     * @param $payload
+     *   The payload.
+     * @return array
+     *   The message array.
+     */
+    public function getFailedScenarioMessage($payload)
+    {
+        $message = $this->getDefaultMessage();
+        $message['summary'] = "Scenario failed";
+        $message['sections'][0]['activityTitle'] = $payload['feature'];
+        $message['sections'][0]['activitySubtitle'] = $payload['description'];
+        $message['sections'][0]['activityImage'] = 'https://uxwing.com/wp-content/themes/uxwing/download/education-school/failed-icon.png';
+        $message['themeColor'] = '#ff0000';
+        $message['sections'][0]['facts'][] = [
+            'name' => 'Feature file',
+            'value' => $payload['feature_file'] . '. Line ' . $payload['line'],
+        ];
+
+        return $message;
+    }
 }
