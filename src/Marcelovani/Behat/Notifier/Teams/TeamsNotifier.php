@@ -75,7 +75,6 @@ class TeamsNotifier
         // Check response code.
         if ($response_code != 200) {
             $msg = "MS Teams returned invalid response code for webhook $url. Response code $response_code.";
-            var_dump($msg);
             throw new Exception($msg);
         }
     }
