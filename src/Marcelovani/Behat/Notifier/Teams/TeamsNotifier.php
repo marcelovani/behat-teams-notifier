@@ -119,5 +119,25 @@ class TeamsNotifier
         }
     }
 
+    /**
+     * Prepares and sends the notification.
+     *
+     * @param array $details
+     *   The event details.
+     */
+    public function notify($details)
+    {
+        $event = $details['event'];
+
+        // Send notification.
+        switch ($details['eventId']) {
+            case 'onAfterSuiteTested';
+                $message = $this->getSuiteFinishedMessage($event);
+                break;
+
+        }
+
+        $this->postMessage($message);
+    }
 
 }
