@@ -111,9 +111,9 @@ class TeamsNotifier
     private function postMessage(array $message)
     {
         $message = json_encode($message, JSON_PRETTY_PRINT);
-        var_dump($message);
         $webhook = $this->getWebhook();
-        if (!empty($webhook) && $message) {
+        if (!empty($webhook) && !empty($message)) {
+            var_dump($message);
             $this->doRequest($webhook, $message);
         }
     }
@@ -206,7 +206,7 @@ class TeamsNotifier
      */
     public function getSuiteFinishedMessage(TestworkEvent\SuiteTested $event)
     {
-        $message = $this->getDefaultMessage($event);
+        $message = $this->getDefaultMessage();
         $message['summary'] = "Automation job finished";
         $message['sections'][0]['activityTitle'] = $message['summary'];
 
