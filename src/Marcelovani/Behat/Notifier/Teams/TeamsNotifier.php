@@ -110,10 +110,13 @@ class TeamsNotifier
      */
     private function postMessage(array $message)
     {
+        if (empty($message)) {
+            return;
+        }
         $message = json_encode($message, JSON_PRETTY_PRINT);
         $webhook = $this->getWebhook();
-        if (!empty($webhook) && !empty($message)) {
-            var_dump($message);
+        if (!empty($webhook)) {
+            var_dump(__CLASS__, $message);
             $this->doRequest($webhook, $message);
         }
     }
