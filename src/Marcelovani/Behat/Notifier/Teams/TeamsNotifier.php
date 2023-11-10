@@ -126,6 +126,7 @@ class TeamsNotifier
      */
     public function notify($details)
     {
+        $message = [];
         $event = $details['event'];
 
         // Send notification.
@@ -170,6 +171,9 @@ class TeamsNotifier
                     $this->failedScenarios[] = $payload['feature'];
                 }
                 break;
+
+            default:
+                var_dump("Event $event is not implemented yet.");
         }
 
         $this->postMessage($message);
