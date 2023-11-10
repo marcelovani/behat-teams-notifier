@@ -131,6 +131,7 @@ class TeamsNotifier
         // Send notification.
         switch ($details['eventId']) {
             case 'onBeforeSuiteTested';
+                $this->failedScenarios = [];
                 $message = $this->getSuiteStartMessage();
                 break;
 
